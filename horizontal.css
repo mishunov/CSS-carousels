@@ -1,0 +1,160 @@
+/* horizontal */
+.horizontal {
+  width: 287px;
+  position: relative;
+  overflow: hidden;
+}
+.horizontal .items {
+  width: 1148px;
+}
+.horizontal img {
+  margin: 0;
+  float: left;
+  width: 287px;
+}
+/* For CSS animations you need to define the parameters for every screen sizes. There is no overriding of these settings. Animations can not be overridden in CSS */
+@media only screen and (max-width: 479px) {
+  .horizontal .items {
+    -webkit-animation: hscroll 20s infinite;
+    -moz-animation: hscroll 20s infinite;
+    -ms-animation: hscroll 20s infinite;
+  }
+  @-webkit-keyframes hscroll {
+    0%,
+    18.75% {
+      margin-left: 0;
+    }
+    25%,
+    43.75% {
+      margin-left: -287px;
+    }
+    50%,
+    68.75% {
+      margin-left: -574px;
+    }
+    75%,
+    93.75% {
+      margin-left: -861px;
+    }
+    100% {
+      margin-left: 0;
+    }
+  }
+  @-moz-keyframes hscroll {
+    0%,
+    18.75% {
+      margin-left: 0;
+    }
+    25%,
+    43.75% {
+      margin-left: -287px;
+    }
+    50%,
+    68.75% {
+      margin-left: -574px;
+    }
+    75%,
+    93.75% {
+      margin-left: -861px;
+    }
+    100% {
+      margin-left: 0;
+    }
+  }
+  @-ms-keyframes hscroll {
+    0%,
+    18.75% {
+      margin-left: 0;
+    }
+    25%,
+    43.75% {
+      margin-left: -287px;
+    }
+    50%,
+    68.75% {
+      margin-left: -574px;
+    }
+    75%,
+    93.75% {
+      margin-left: -861px;
+    }
+    100% {
+      margin-left: 0;
+    }
+  }
+}
+@media only screen and (min-width: 480px) {
+  .horizontal,
+  .horizontal img {
+    width: 333px;
+  }
+  .horizontal .items {
+    width: 1332px;
+    -webkit-animation: hscroll 20s infinite;
+    -moz-animation: hscroll 20s infinite;
+    -ms-animation: hscroll 20s infinite;
+  }
+  @-webkit-keyframes hscroll {
+    0%,
+    18.75% {
+      margin-left: 0;
+    }
+    25%,
+    43.75% {
+      margin-left: -333px;
+    }
+    50%,
+    68.75% {
+      margin-left: -666px;
+    }
+    75%,
+    93.75% {
+      margin-left: -999px;
+    }
+    100% {
+      margin-left: 0;
+    }
+  }
+  @-moz-keyframes hscroll {
+    0%,
+    18.75% {
+      margin-left: 0;
+    }
+    25%,
+    43.75% {
+      margin-left: -333px;
+    }
+    50%,
+    68.75% {
+      margin-left: -666px;
+    }
+    75%,
+    93.75% {
+      margin-left: -999px;
+    }
+    100% {
+      margin-left: 0;
+    }
+  }
+  @-ms-keyframes hscroll {
+    0%,
+    18.75% {
+      margin-left: 0;
+    }
+    25%,
+    43.75% {
+      margin-left: -333px;
+    }
+    50%,
+    68.75% {
+      margin-left: -666px;
+    }
+    75%,
+    93.75% {
+      margin-left: -999px;
+    }
+    100% {
+      margin-left: 0;
+    }
+  }
+}

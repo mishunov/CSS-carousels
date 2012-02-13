@@ -1,0 +1,40 @@
+/* vertical */
+@width:287px;
+@height: 430px;
+@numberOfItems: 4;
+@visibleItemDuration: 4s;
+@transitionDuration: 1s;
+
+@carouselPeriod: @numberOfItems * (@visibleItemDuration + @transitionDuration);
+
+.vertical {
+    width: @width;
+    height: @height;
+    position: relative;
+    overflow: hidden;
+}
+/* For CSS animations you need to define the parameters for every screen sizes. There is no overriding of these settings. Animations can not be overridden in CSS */
+.vertical .items {
+    .css3_animation(vscroll @carouselPeriod infinite);
+}
+@-moz-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -1px * @height; }
+    50%, 68.75% { margin-top: -2px * @height; }
+    75%, 93.75% { margin-top: -3px * @height; }
+    100%  { margin-top: 0 }
+}
+@-webkit-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -1px * @height; }
+    50%, 68.75% { margin-top: -2px * @height; }
+    75%, 93.75% { margin-top: -3px * @height; }
+    100%  { margin-top: 0 }
+}
+@-ms-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -1px * @height; }
+    50%, 68.75% { margin-top: -2px * @height; }
+    75%, 93.75% { margin-top: -3px * @height; }
+    100%  { margin-top: 0 }
+}

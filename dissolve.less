@@ -1,0 +1,56 @@
+/* dissolve  */
+@width:287px;
+@height: 430px;
+
+.dissolve {
+    width:@width;
+    height: @height;
+    position:relative;
+    overflow: hidden;
+}
+.dissolve img {
+    position:absolute;
+    left: 0;
+    right:0;
+    opacity: 0;
+    -webkit-animation: dissolve 20s linear infinite;
+    -moz-animation: dissolve 20s linear infinite;
+    -ms-animation: dissolve 20s linear infinite;
+}
+.dissolve img:nth-child(2) {
+    -webkit-animation-delay: 5s;
+    -moz-animation-delay: 5s;
+    -ms-animation-delay: 5s;
+}
+.dissolve img:nth-child(3) {
+    -webkit-animation-delay: 10s;
+    -moz-animation-delay: 10s;
+    -ms-animation-delay: 10s;
+}        
+.dissolve img:nth-child(4) {
+    -webkit-animation-delay: 15s;
+    -moz-animation-delay: 15s;
+    -ms-animation-delay: 15s;
+}
+@-webkit-keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
+}
+@-moz-keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
+}    
+@-ms-keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
+}
+
+@media only screen and (min-width: 480px) {
+@width:333px;
+@height: 500px;
+
+.dissolve {
+    width:@width;
+    height: @height;
+}
+}

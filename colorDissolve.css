@@ -1,0 +1,73 @@
+/* colorDissolve  */
+.colorDissolve {
+  position: relative;
+  overflow: hidden;
+  width: 287px;
+  height: 430px;
+  background: #000000;
+}
+.colorDissolve img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-animation: colorDissolve 20s linear infinite;
+  -moz-animation: colorDissolve 20s linear infinite;
+  -ms-animation: colorDissolve 20s linear infinite;
+}
+.colorDissolve img:nth-child(2) {
+  -webkit-animation-delay: 5s;
+  -moz-animation-delay: 5s;
+  -ms-animation-delay: 5s;
+}
+.colorDissolve img:nth-child(3) {
+  -webkit-animation-delay: 10s;
+  -moz-animation-delay: 10s;
+  -ms-animation-delay: 10s;
+}
+.colorDissolve img:nth-child(4) {
+  -webkit-animation-delay: 15s;
+  -moz-animation-delay: 15s;
+  -ms-animation-delay: 15s;
+}
+/* If you plan to support Safari 4 for any reason, you should have 0% and 100% frames */
+@-webkit-keyframes colorDissolve {
+  0%,
+  25%,
+  100% {
+    opacity: 0;
+  }
+  2.5%,
+  22.5% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes colorDissolve {
+  0%,
+  25%,
+  100% {
+    opacity: 0;
+  }
+  2.5%,
+  22.5% {
+    opacity: 1;
+  }
+}
+@-ms-keyframes colorDissolve {
+  0%,
+  25%,
+  100% {
+    opacity: 0;
+  }
+  2.5%,
+  22.5% {
+    opacity: 1;
+  }
+}
+@media only screen and (min-width: 480px) {
+  .colorDissolve {
+    width: 333px;
+    height: 500px;
+    background: #000000;
+  }
+}

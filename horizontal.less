@@ -1,0 +1,46 @@
+/* horizontal */
+@width:287px;
+@numberOfItems: 4;
+@visibleItemDuration: 4s;
+@transitionDuration: 1s;
+
+@carouselPeriod: @numberOfItems * (@visibleItemDuration + @transitionDuration);
+
+.horizontal {
+    width: @width;
+    position: relative;
+    overflow: hidden;
+}
+.horizontal .items {
+    width: @width * @numberOfItems;
+}
+.horizontal img {
+    margin: 0;
+    float:left;
+    width: @width;
+}
+/* For CSS animations you need to define the parameters for every screen sizes. There is no overriding of these settings. Animations can not be overridden in CSS */
+.horizontal .items {
+    .css3_animation(hscroll @carouselPeriod infinite);
+}
+@-webkit-keyframes hscroll {
+    0%, 18.75%  { margin-left: 0 }
+    25%, 43.75% { margin-left: -1px * @width; }
+    50%, 68.75% { margin-left: -2px * @width; }
+    75%, 93.75% { margin-left: -3px * @width; }
+    100%  { margin-left: 0 }
+}
+@-moz-keyframes hscroll {
+    0%, 18.75%  { margin-left: 0 }
+    25%, 43.75% { margin-left: -1px * @width; }
+    50%, 68.75% { margin-left: -2px * @width; }
+    75%, 93.75% { margin-left: -3px * @width; }            
+    100%  { margin-left: 0 }
+}
+@-ms-keyframes hscroll {
+    0%, 18.75%  { margin-left: 0 }
+    25%, 43.75% { margin-left: -1px * @width; }
+    50%, 68.75% { margin-left: -2px * @width; }
+    75%, 93.75% { margin-left: -3px * @width; }            
+    100%  { margin-left: 0 }
+}
