@@ -4,28 +4,41 @@
      Begin vertical.js 
 ***********************************************/ 
 
-var cheight=430,
-    numberOfItems=4,
-    visibleItemDuration=4000,
-    transitionDuration=1000,
-    i, shift;
+/*globals defaults:true*/
 
 (function ($) {
-    $.fn.animateCarousel = function() {
+    $.fn.verticalCarousel = function(options) {
+        var i, shift,
+            $that = this,
+            op = $.extend(defaults, options);
         return this.each(function () {
-            for (i = 1; i < numberOfItems; i += 1) {
-                shift = -i * cheight;
-                $(this).delay(visibleItemDuration).animate({
+            for (i = 1; i < op.numberOfItems; i += 1) {
+                shift = -i * op.cheight;
+                $that.delay(op.visibleItemDuration).animate({
                     marginTop: shift
-                }, transitionDuration);
+                }, op.transitionDuration);
             }
-            $(this).delay(visibleItemDuration).animate({
+            $that.delay(op.visibleItemDuration).animate({
                 marginTop: 0
-            }, transitionDuration);
+            }, op.transitionDuration, function () {
+                i = 0;
+                $that.verticalCarousel(options);
+            });
         });
+    };
+    var defaults = {
+        cheight: 30, // carousel's height in pixels
+        numberOfItems: 5, // number of the items in the carousel
+        visibleItemDuration: 1000, // 4 seconds
+        transitionDuration: 1000 // 1 second
     };
 }(window.jQuery));
 
 $(function () {
-    $('.vertical .items').animateCarousel();
+    $('.vertical .items').verticalCarousel({
+        cheight: 430,
+        numberOfItems: 4,
+        visibleItemDuration: 4000,
+        transitionDuration: 1000
+    });
 });
