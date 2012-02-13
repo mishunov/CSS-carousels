@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Pure CSS carousels</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="script-min.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Pure CSS carousels</h1>
+    <p id="intro"><strong>Important!</strong> No javascript has been harmed in these demos. Nowhere on this page. Nada. Zilch.</p>
+</header>
+
+<div id="vertical" class="container">
+<nav>
+    Choose a style to preview:
+    <ul>
+        <li><a href="#vertical" class="selected">Vertical slider</a></li>
+        <li><a href="#horizontal">Horizontal slider</a></li>
+        <li><a href="#color-dissolve">Dissolving through color</a></li>
+        <li><a href="#dissolve">Dissolving images</a></li>
+    </ul>
+</nav>
+<section class="clearfix">
+    <h2>Vertical sliding carousel</h2>
+    <div class="carouselWrapper">   
+        <div class="carousel vertical">
+            <div class="items">
+            <img src="http://farm8.staticflickr.com/7020/6767599565_e0ffee2813_d.jpg"
+                 alt="" />
+            <img src="http://farm8.staticflickr.com/7016/6767598507_21720ed21f_d.jpg"
+                 alt="Seven to ten at Leeds & Holbeck" />
+            <img src="http://farm8.staticflickr.com/7163/6767596393_8f8b9609ec_d.jpg"
+                 alt="Seven to ten at Leeds & Holbeck" />
+            <img src="http://farm8.staticflickr.com/7004/6767593255_ae68f10fac_d.jpg"
+                 alt="Bristol autumn" />
+             </div>
+        </div>
+        <ul class="support">
+            <li class="chrome">14+</li>
+            <li class="firefox">5+</li>
+            <li class="opera nosupport"></li>
+            <li class="safari">4+</li>
+            <li class="ie">10+</li>
+        </ul>
+    </div>
+    <div class="code">
+        <h3>HTML</h3>
+        <pre>
+&lt;div class="carousel vertical"&gt;
+    &lt;div class="items"&gt;
+        &lt;img src="one.jpg" /&gt;
+        &lt;img src="two.jpg" /&gt;
+        &lt;img src="three.jpg" /&gt;
+        &lt;img src="four.jpg" /&gt;
+     &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <h3>CSS</h3>
+        <pre>
+.vertical {
+    height: 500px; // height of one carousel item
+    width: 333px; // width of one carousel item
+    position: relative;
+    overflow: hidden;
+}
+.vertical .items {
+    -webkit-animation: vscroll 16s infinite;
+    -moz-animation: vscroll 16s infinite;
+    -ms-animation: vscroll 16s infinite;
+}
+// keyframes: 3s visibile + 1s transition for each item
+@-webkit-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -500px; }
+    50%, 68.75% { margin-top: -1000px; }
+    75%, 93.75% { margin-top: -1500px; }            
+    100%  { margin-top: 0 }
+}
+@-moz-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -500px; }
+    50%, 68.75% { margin-top: -1000px; }
+    75%, 93.75% { margin-top: -1500px; }            
+    100%  { margin-top: 0 }
+}
+@-ms-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -500px; }
+    50%, 68.75% { margin-top: -1000px; }
+    75%, 93.75% { margin-top: -1500px; }            
+    100%  { margin-top: 0 }
+}</pre>
+    </div>
+</section>
+</div>
+
+<div id="horizontal" class="container">
+<nav>
+    Choose a style to preview:
+    <ul>
+        <li><a href="#vertical">Vertical slider</a></li>
+        <li><a href="#horizontal" class="selected">Horizontal slider</a></li>
+        <li><a href="#color-dissolve">Dissolving through color</a></li>
+        <li><a href="#dissolve">Dissolving images</a></li>
+    </ul>
+</nav>
+<section class="clearfix">
+    <h2>Horizontal sliding carousel</h2>
+    <div class="carouselWrapper">
+        <div class="carousel horizontal">
+            <div class="items">
+                <img src="http://farm8.staticflickr.com/7020/6767599565_e0ffee2813_d.jpg"
+                     alt="" />
+                <img src="http://farm8.staticflickr.com/7016/6767598507_21720ed21f_d.jpg"
+                     alt="Seven to ten at Leeds & Holbeck" />
+                <img src="http://farm8.staticflickr.com/7163/6767596393_8f8b9609ec_d.jpg"
+                     alt="Seven to ten at Leeds & Holbeck" />
+                <img src="http://farm8.staticflickr.com/7004/6767593255_ae68f10fac_d.jpg"
+                     alt="Bristol autumn" />
+             </div>
+        </div>
+        <ul class="support">
+            <li class="chrome">14+</li>
+            <li class="firefox">5+</li>
+            <li class="opera nosupport"></li>
+            <li class="safari">4+</li>
+            <li class="ie">10+</li>
+        </ul>
+    </div>
+    <div class="code">
+        <h3>HTML</h3>
+        <pre>
+&lt;div class="carousel horizontal"&gt;
+    &lt;div class="items"&gt;
+        &lt;img src="one.jpg" /&gt;
+        &lt;img src="two.jpg" /&gt;
+        &lt;img src="three.jpg" /&gt;
+        &lt;img src="four.jpg" /&gt;
+     &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <h3>CSS</h3>
+        <pre>
+.horizontal {
+    width: 333px; // width of one item
+    position: relative;
+    overflow: hidden;
+}
+.horizontal img {
+    margin: 0;
+    float:left;
+}
+.horizontal .items {
+    width:1332px; // width of 4 carousel items
+    -webkit-animation: hscroll 16s infinite;
+    -moz-animation: hscroll 16s infinite;
+    -ms-animation: hscroll 16s infinite;
+}
+// keyframes: 3s visibile + 1s transition for each item
+@-webkit-keyframes hscroll {
+    0%, 18.75%  { margin-left: 0 }
+    25%, 43.75% { margin-left: -333px; }
+    50%, 68.75% { margin-left: -666px; }
+    75%, 93.75% { margin-left: -999px; }            
+    100%  { margin-left: 0 }
+}
+@-moz-keyframes hscroll {
+    0%, 18.75%  { margin-left: 0 }
+    25%, 43.75% { margin-left: -333px; }
+    50%, 68.75% { margin-left: -666px; }
+    75%, 93.75% { margin-left: -999px; }            
+    100%  { margin-left: 0 }
+}
+@-ms-keyframes hscroll {
+    0%, 18.75%  { margin-left: 0 }
+    25%, 43.75% { margin-left: -333px; }
+    50%, 68.75% { margin-left: -666px; }
+    75%, 93.75% { margin-left: -999px; }            
+    100%  { margin-left: 0 }
+}</pre>
+    </div>    
+</section>
+</div>
+
+<div id="color-dissolve" class="container">
+<nav>
+    Choose a style to preview:
+    <ul>
+        <li><a href="#vertical">Vertical slider</a></li>
+        <li><a href="#horizontal">Horizontal slider</a></li>
+        <li><a href="#color-dissolve" class="selected">Dissolving through color</a></li>
+        <li><a href="#dissolve">Dissolving images</a></li>
+    </ul>
+</nav>
+<section class="clearfix">
+    <h2>Carousel with images dissolving through color</h2>
+    <div class="carouselWrapper">
+        <div class="carousel colorDissolve">
+            <img src="http://farm8.staticflickr.com/7020/6767599565_e0ffee2813_d.jpg"
+                 alt="" />
+            <img src="http://farm8.staticflickr.com/7016/6767598507_21720ed21f_d.jpg"
+                 alt="Seven to ten at Leeds & Holbeck" />
+            <img src="http://farm8.staticflickr.com/7163/6767596393_8f8b9609ec_d.jpg"
+                 alt="Seven to ten at Leeds & Holbeck" />
+            <img src="http://farm8.staticflickr.com/7004/6767593255_ae68f10fac_d.jpg"
+                 alt="Not so fishy fountain" />
+        </div>
+        <ul class="support">
+            <li class="chrome">14+</li>
+            <li class="firefox">5+</li>
+            <li class="opera nosupport"></li>
+            <li class="safari">4+</li>
+            <li class="ie">10+</li>
+        </ul>
+    </div>
+    <div class="code">
+        <h3>HTML</h3>
+        <pre>
+&lt;div class="carousel colorDissolve"&gt;
+    &lt;img src="one.jpg" /&gt;
+    &lt;img src="two.jpg" /&gt;
+    &lt;img src="three.jpg"/&gt;
+    &lt;img src="four.jpg" /&gt;
+&lt;/div&gt;</pre>
+        <h3>CSS</h3>
+        <pre>
+.colorDissolve {
+    position:relative;
+    overflow: hidden;
+    width:333px; // width of one carousel item
+    height: 500px; // height of one carousel item
+    background: #000; // color to dissolve through
+}
+.colorDissolve img {
+    position:absolute;
+    left: 0;
+    right:0;
+    opacity: 0;
+    -webkit-animation: dissolve 20s linear infinite;
+    -moz-animation: dissolve 20s linear infinite;
+    -ms-animation: dissolve 20s linear infinite;
+}
+.colorDissolve img:nth-child(2) {
+    -webkit-animation-delay: 5s;
+    -moz-animation-delay: 5s;
+    -ms-animation-delay: 5s;
+}
+.colorDissolve img:nth-child(3) {
+    -webkit-animation-delay: 10s;
+    -moz-animation-delay: 10s;
+    -ms-animation-delay: 10s;
+}        
+.colorDissolve img:nth-child(4) {
+    -webkit-animation-delay: 15s;
+    -moz-animation-delay: 15s;
+    -ms-animation-delay: 15s;
+}
+// keyframes: 4.5s visibile + 0.5s transition for each item
+@-webkit-keyframes dissolve {
+    2.5%, 22.5% { opacity: 1;}    
+    25%, 100% { opacity: 0; }
+}
+@-moz-keyframes dissolve {
+    2.5%, 22.5% { opacity: 1;}    
+    25%, 100% { opacity: 0; }
+}    
+@-ms-keyframes dissolve {
+    2.5%, 22.5% { opacity: 1;}    
+    25%, 100% { opacity: 0; }
+}
+</pre>
+    </div>
+</section>
+</div>
+
+<div id="dissolve" class="container">
+<nav>
+    Choose a style to preview:
+    <ul>
+        <li><a href="#vertical">Vertical slider</a></li>
+        <li><a href="#horizontal">Horizontal slider</a></li>
+        <li><a href="#color-dissolve">Dissolving through color</a></li>
+        <li><a href="#dissolve" class="selected">Dissolving images</a></li>
+    </ul>
+</nav>
+<section class="clearfix">
+    <h2>Carousel with dissolving images</h2>
+    <p>To help you build this carousel animation (that is a little bit tricky), I have made <a href="http://tinyurl.com/7uqoa47" title="Instacalc calculator for the carousel's CSS animation">a calculator</a> with explanations and notes on how to use it. Use styles for this demo as an example and replace some values with the ones from the calculator to tune the carousel for your needs.</p>
+    <div class="carouselWrapper">
+        <div class="carousel dissolve">
+            <img src="http://farm8.staticflickr.com/7020/6767599565_e0ffee2813_d.jpg"
+                 alt="" />
+            <img src="http://farm8.staticflickr.com/7016/6767598507_21720ed21f_d.jpg"
+                 alt="Seven to ten at Leeds & Holbeck" />
+            <img src="http://farm8.staticflickr.com/7163/6767596393_8f8b9609ec_d.jpg"
+                 alt="Seven to ten at Leeds & Holbeck" />
+            <img src="http://farm8.staticflickr.com/7004/6767593255_ae68f10fac_d.jpg"
+                 alt="Not so fishy fountain" />
+        </div>
+        <ul class="support">
+            <li class="chrome">14+</li>
+            <li class="firefox">5+</li>
+            <li class="opera nosupport"></li>
+            <li class="safari">4+</li>
+            <li class="ie">10+</li>
+        </ul>
+    </div>
+    <div class="code">
+        <h3>HTML</h3>
+        <pre>
+&lt;div class="carousel dissolve"&gt;
+    &lt;img src="one.jpg" /&gt;
+    &lt;img src="two.jpg" /&gt;
+    &lt;img src="three.jpg"/&gt;
+    &lt;img src="four.jpg" /&gt;
+&lt;/div&gt;</pre>
+        <h3>CSS</h3>
+        <pre>
+.dissolve {
+    width:333px;
+    height: 500px;
+    position:relative;
+    overflow: hidden;
+}
+.dissolve img {
+    position:absolute;
+    left: 0;
+    right:0;
+    opacity: 0;
+    -webkit-animation: dissolve 20s linear infinite;
+    -moz-animation: dissolve 20s linear infinite;
+    -ms-animation: dissolve 20s linear infinite;
+}
+.dissolve img:nth-child(2) {
+    -webkit-animation-delay: 5s;
+    -moz-animation-delay: 5s;
+    -ms-animation-delay: 5s;
+}
+.dissolve img:nth-child(3) {
+    -webkit-animation-delay: 10s;
+    -moz-animation-delay: 10s;
+    -ms-animation-delay: 10s;
+}        
+.dissolve img:nth-child(4) {
+    -webkit-animation-delay: 15s;
+    -moz-animation-delay: 15s;
+    -ms-animation-delay: 15s;
+}
+@-webkit-keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
+}
+@-moz-keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
+}    
+@-ms-keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
+}
+</pre>
+    </div>    
+</section>
+</div>
+
+<footer>
+    <nav>
+        Choose a style to preview:
+        <ul>
+            <li><a href="#vertical">Vertical slider</a></li>
+            <li><a href="#horizontal">Horizontal slider</a></li>
+            <li><a href="#color-dissolve">Dissolving through color</a></li>
+            <li><a href="#dissolve">Dissolving images</a></li>
+        </ul>
+    </nav>
+    <address>
+        <a href="http://mishunov.me" title="Visit Denys Mishunov's blog">
+            <img src="http://24.media.tumblr.com/avatar_647041a4337f_64.png" alt="Denys Mishunov" />
+        </a>            
+        <small>Brought to you by <a href="http://mishunov.me" title="Visit Denys Mishunov's blog">Denys Mishunov</a></small>    
+        <ul class="social">
+            <li><a href="http://twitter.com/mishunov" class="socialIcon twitterIcon" title="Contact me on Twitter">Contact me on Twitter</a></li>
+            <li><a href="http://plus.google.com/102311957553961771735" class="socialIcon googleIcon" title="Contact me on Google +">Contact me on Google +</a></li>
+        </ul><br />
+        <small>Browser icons by <a href="http://paulirish.com/2010/high-res-browser-icons/">Paul Irish</a></small>
+    </address>
+</footer>
+</body>
+</html>
