@@ -1,4 +1,32 @@
-/*globals defaults:true, window:false, $:false, alert:false*/
+/*globals defaults:true, window:false, $:false */
+
+// First of all we need to detect whether browser
+// supports animation natively or it needs a javascript
+// polyfill.
+// The detection code by the courtesy of Chris Heilmann
+// http://hacks.mozilla.org/2011/09/detecting-and-generating-css-animations-in-javascript/
+
+var animation = false,
+    elm = document.createElement('detect'),
+    animationstring = 'animation',
+    keyframeprefix = '',
+    domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
+    pfx  = '';
+
+
+if( elm.style.animationName ) { animation = true; }
+
+if( animation === false ) {
+  for( var i = 0; i < domPrefixes.length; i++ ) {
+    if( elm.style[ domPrefixes[i] + 'AnimationName' ] !== undefined ) {
+      pfx = domPrefixes[ i ];
+      animationstring = pfx + 'Animation';
+      keyframeprefix = '-' + pfx.toLowerCase() + '-';
+      animation = true;
+      break;
+    }
+  }
+}
 
 (function ($) {
     $.slowEach = function (array, interval, callback) {
@@ -6,7 +34,6 @@
             return;
         }
         var i = 0;
-        next();
         function next() {
             if (callback.call(array[i], i, array[i]) !== false) {
                 if (++i < array.length) {
@@ -14,12 +41,12 @@
                 }
             }
         }
+        next();
         return array;
     };
     $.fn.colorDissolve = function (options) {
         var op = $.extend(defaults, options),
             $that = $(this),
-            $elem,
             interval = op.visibleItemDuration + 2 * op.transitionDuration;
         return $.slowEach(this, interval, function () {
             $(this)
@@ -43,8 +70,10 @@
 }(window.jQuery));
 
 $(function () {
-    $('.colorDissolve img').colorDissolve({
-        visibleItemDuration: 4500,
-        transitionDuration: 500
-    });
+    if( animation === false ) {
+        $('.colorDissolve img').colorDissolve({
+            visibleItemDuration: 4500,
+            transitionDuration: 500
+        });
+    }
 });

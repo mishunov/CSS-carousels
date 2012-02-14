@@ -1,4 +1,32 @@
-/*globals defaults:true*/
+/*globals defaults:true, alert:false*/
+
+// First of all we need to detect whether browser
+// supports animation natively or it needs a javascript
+// polyfill.
+// The detection code by the courtesy of Chris Heilmann
+// http://hacks.mozilla.org/2011/09/detecting-and-generating-css-animations-in-javascript/
+
+var animation = false,
+    elm = document.createElement('detect'),
+    animationstring = 'animation',
+    keyframeprefix = '',
+    domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
+    pfx  = '';
+
+
+if( elm.style.animationName ) { animation = true; }
+
+if( animation === false ) {
+  for( var i = 0; i < domPrefixes.length; i++ ) {
+    if( elm.style[ domPrefixes[i] + 'AnimationName' ] !== undefined ) {
+      pfx = domPrefixes[ i ];
+      animationstring = pfx + 'Animation';
+      keyframeprefix = '-' + pfx.toLowerCase() + '-';
+      animation = true;
+      break;
+    }
+  }
+}
 
 (function ($) {
     $.fn.verticalCarousel = function(options) {
@@ -29,10 +57,12 @@
 }(window.jQuery));
 
 $(function () {
-    $('.vertical .items').verticalCarousel({
-        cheight: 430,
-        numberOfItems: 4,
-        visibleItemDuration: 4000,
-        transitionDuration: 1000
-    });
+   if( animation === false ) {
+       $('.vertical .items').verticalCarousel({
+           cheight: 430,
+           numberOfItems: 4,
+           visibleItemDuration: 4000,
+           transitionDuration: 1000
+       });
+   }
 });
