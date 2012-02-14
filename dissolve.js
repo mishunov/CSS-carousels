@@ -3,7 +3,7 @@
 // First of all we need to detect whether browser
 // supports animation natively or it needs a javascript
 // polyfill.
-// The detection code by the courtesy of Chris Heilmann
+// The detection code by the courtesy of Christian Heilmann
 // http://hacks.mozilla.org/2011/09/detecting-and-generating-css-animations-in-javascript/
 
 var animation = false,
