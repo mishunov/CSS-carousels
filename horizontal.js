@@ -49,20 +49,21 @@ if( animation === false ) {
         });
     };
     var defaults = {
-        cwidth: 30, // carousel's height in pixels
-        numberOfItems: 5, // number of the items in the carousel
-        visibleItemDuration: 1000, // 4 seconds
-        transitionDuration: 1000 // 1 second
+        cwidth: 30,
+        numberOfItems: 5,
+        visibleItemDuration: 1000,
+        transitionDuration: 1000
     };
 }(window.jQuery));
 
 $(function () {
     if( animation === false ) {
         $('.horizontal .items').horizontalCarousel({
-            cwidth: 287,
-            numberOfItems: 4,
-            visibleItemDuration: 4000,
-            transitionDuration: 1000
+            // TUNE YOUR CAROUSEL HERE
+            cwidth: 287, // carousel's height in pixels
+            numberOfItems: 4, // number of the items in the carousel
+            visibleItemDuration: 4000, // 4 seconds
+            transitionDuration: 1000 // 1 second
         });
     }
 });

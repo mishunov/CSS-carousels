@@ -68,15 +68,20 @@ if( animation === false ) {
         });
     };
     var defaults = {
-        visibleItemDuration: 4000, // 4 seconds
-        transitionDuration: 1000 // 1 second
+        visibleItemDuration: 4000,
+        transitionDuration: 1000
     };
 }(window.jQuery));
 
 $(function () {
     if( animation === false ) {
         $('.dissolve img').dissolve({
+            // TUNE YOUR CAROUSEL HERE
+
+            // duration of an item being visible in miliseconds
             visibleItemDuration: 4000,
+
+            // duration of a transition between items in miliseconds
             transitionDuration: 1000
         });
     }

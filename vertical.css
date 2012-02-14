@@ -1,152 +1,45 @@
 /* vertical */
 .vertical {
-  width: 287px;
-  height: 430px;
-  position: relative;
-  overflow: hidden;
+    width: 287px;
+    height: 430px;
+    position: relative;
+    overflow: hidden;
 }
-/* For CSS animations you need to define the parameters for every screen sizes. There is no overriding of these settings. Animations can not be overridden in CSS */
-@media only screen and (max-width: 479px) {
-  .vertical .items {
-    -webkit-animation: vscroll 16s infinite;
-    -moz-animation: vscroll 16s infinite;
-    -ms-animation: vscroll 16s infinite;
-  }
-  @-webkit-keyframes vscroll {
-    0%,
-    18.75% {
-      margin-top: 0;
-    }
-    25%,
-    43.75% {
-      margin-top: -430px;
-    }
-    50%,
-    68.75% {
-      margin-top: -860px;
-    }
-    75%,
-    93.75% {
-      margin-top: -1290px;
-    }
-    100% {
-      margin-top: 0;
-    }
-  }
-  @-moz-keyframes vscroll {
-    0%,
-    18.75% {
-      margin-top: 0;
-    }
-    25%,
-    43.75% {
-      margin-top: -430px;
-    }
-    50%,
-    68.75% {
-      margin-top: -860px;
-    }
-    75%,
-    93.75% {
-      margin-top: -1290px;
-    }
-    100% {
-      margin-top: 0;
-    }
-  }
-  @-ms-keyframes vscroll {
-    0%,
-    18.75% {
-      margin-top: 0;
-    }
-    25%,
-    43.75% {
-      margin-top: -430px;
-    }
-    50%,
-    68.75% {
-      margin-top: -860px;
-    }
-    75%,
-    93.75% {
-      margin-top: -1290px;
-    }
-    100% {
-      margin-top: 0;
-    }
-  }
+.vertical .items {
+    -webkit-animation: vscroll 20s infinite;
+    -moz-animation: vscroll 20s infinite;
+    -ms-animation: vscroll 20s infinite;
+    animation: vscroll 20s infinite;
 }
-@media only screen and (min-width: 480px) {
-  .vertical {
-    height: 500px;
-    width: 333px;
-  }
-  .vertical .items {
-    -webkit-animation: vscroll 16s infinite;
-    -moz-animation: vscroll 16s infinite;
-    -ms-animation: vscroll 16s infinite;
-  }
-  @-webkit-keyframes vscroll {
-    0%,
-    18.75% {
-      margin-top: 0;
-    }
-    25%,
-    43.75% {
-      margin-top: -500px;
-    }
-    50%,
-    68.75% {
-      margin-top: -1000px;
-    }
-    75%,
-    93.75% {
-      margin-top: -1500px;
-    }
-    100% {
-      margin-top: 0;
-    }
-  }
-  @-moz-keyframes vscroll {
-    0%,
-    18.75% {
-      margin-top: 0;
-    }
-    25%,
-    43.75% {
-      margin-top: -500px;
-    }
-    50%,
-    68.75% {
-      margin-top: -1000px;
-    }
-    75%,
-    93.75% {
-      margin-top: -1500px;
-    }
-    100% {
-      margin-top: 0;
-    }
-  }
-  @-ms-keyframes vscroll {
-    0%,
-    18.75% {
-      margin-top: 0;
-    }
-    25%,
-    43.75% {
-      margin-top: -500px;
-    }
-    50%,
-    68.75% {
-      margin-top: -1000px;
-    }
-    75%,
-    93.75% {
-      margin-top: -1500px;
-    }
-    100% {
-      margin-top: 0;
-    }
-  }
+/*
+/* The keyframes calculations are based on assumption of 4 items in the carousel.
+/* You should notice the pattern for your own calculations.
+*/
+@-moz-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -430px; }
+    50%, 68.75% { margin-top: -860px; }
+    75%, 93.75% { margin-top: -1290px; }
+    100%  { margin-top: 0 }
+}
+@-webkit-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -430px; }
+    50%, 68.75% { margin-top: -860px; }
+    75%, 93.75% { margin-top: -1290px; }
+    100%  { margin-top: 0 }
+}
+@-ms-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -430px; }
+    50%, 68.75% { margin-top: -860px; }
+    75%, 93.75% { margin-top: -1290px; }
+    100%  { margin-top: 0 }
+}
+@keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -430px; }
+    50%, 68.75% { margin-top: -860px; }
+    75%, 93.75% { margin-top: -1290px; }
+    100%  { margin-top: 0 }
 }

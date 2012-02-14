@@ -32,6 +32,9 @@ a {
 	color: #006DCC;
 	font-family: @sans-serif;
 }
+section.clearfix a {
+    color: #33a0ff;
+}
 pre {
     text-align: left;
     background: #000;
@@ -137,6 +140,16 @@ nav a {
 
 /* @group CAROUSEL */
 
+.moaning {
+    font-size: .8em;
+    font-family: @sans-serif;
+    line-height: 1.5em;
+    strong {
+        display: block;
+        padding-bottom: .5em;
+        font-size: 1.2em;
+    }
+}
 .carousel {
 	margin: 0 auto;
 	padding: 0;
@@ -286,10 +299,11 @@ address {
     .carouselWrapper {
         float: right;
         margin: 0;
+        width: 307px;
     }
     .code {
         float: left;
-        width: 49%;
+        width: 60%;
     }
 }        
 @media only screen and (min-width: 1024px) {

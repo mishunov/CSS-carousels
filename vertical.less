@@ -1,9 +1,9 @@
 /* vertical */
-@width:287px;
-@height: 430px;
-@numberOfItems: 4;
-@visibleItemDuration: 4s;
-@transitionDuration: 1s;
+@width:287px; // width of the carousel
+@height: 430px; // height of the carousel
+@numberOfItems: 4; // the number of items in the carousel
+@visibleItemDuration: 4s; // time during which a carousel item is fully visible
+@transitionDuration: 1s; // duration of the transition between two carousel items
 
 @carouselPeriod: @numberOfItems * (@visibleItemDuration + @transitionDuration);
 
@@ -12,11 +12,17 @@
     height: @height;
     position: relative;
     overflow: hidden;
+    .items {
+        -webkit-animation: vscroll @carouselPeriod infinite;
+        -moz-animation: vscroll @carouselPeriod infinite;
+        -ms-animation: vscroll @carouselPeriod infinite;
+        animation: vscroll @carouselPeriod infinite;
+    }
 }
-/* For CSS animations you need to define the parameters for every screen sizes. There is no overriding of these settings. Animations can not be overridden in CSS */
-.vertical .items {
-    .css3_animation(vscroll @carouselPeriod infinite);
-}
+/*
+/* The keyframes calculations are based on assumption of 4 items in the carousel.
+/* You should notice the pattern for your own calculations.
+*/
 @-moz-keyframes vscroll {
     0%, 18.75%  { margin-top: 0 }
     25%, 43.75% { margin-top: -1px * @height; }
@@ -32,6 +38,13 @@
     100%  { margin-top: 0 }
 }
 @-ms-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -1px * @height; }
+    50%, 68.75% { margin-top: -2px * @height; }
+    75%, 93.75% { margin-top: -3px * @height; }
+    100%  { margin-top: 0 }
+}
+@keyframes vscroll {
     0%, 18.75%  { margin-top: 0 }
     25%, 43.75% { margin-top: -1px * @height; }
     50%, 68.75% { margin-top: -2px * @height; }

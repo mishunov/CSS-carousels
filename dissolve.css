@@ -5,7 +5,7 @@
   position: relative;
   overflow: hidden;
 }
-.dissolve img {
+.dissolve .item {
   position: absolute;
   left: 0;
   right: 0;
@@ -13,58 +13,44 @@
   -webkit-animation: dissolve 20s linear infinite;
   -moz-animation: dissolve 20s linear infinite;
   -ms-animation: dissolve 20s linear infinite;
+  animation: dissolve 20s linear infinite;
 }
-.dissolve img:nth-child(2) {
+.dissolve .item:nth-child(2) {
   -webkit-animation-delay: 5s;
   -moz-animation-delay: 5s;
   -ms-animation-delay: 5s;
+  animation-delay: 5s;
 }
-.dissolve img:nth-child(3) {
+.dissolve .item:nth-child(3) {
   -webkit-animation-delay: 10s;
   -moz-animation-delay: 10s;
   -ms-animation-delay: 10s;
+  animation-delay: 10s;
 }
-.dissolve img:nth-child(4) {
+.dissolve .item:nth-child(4) {
   -webkit-animation-delay: 15s;
   -moz-animation-delay: 15s;
   -ms-animation-delay: 15s;
+  animation-delay: 15s;
 }
+/*
+/* The keyframes calculations are based on assumption of 4 items in the carousel.
+/* You should notice the pattern for your own calculations.
+*/
+/* If you plan to support Safari 4 for any reason, you *must* have 0% and 100% frames */
 @-webkit-keyframes dissolve {
-  0%,
-  30%,
-  100% {
-    opacity: 0;
-  }
-  5%,
-  25% {
-    opacity: 1;
-  }
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
 }
 @-moz-keyframes dissolve {
-  0%,
-  30%,
-  100% {
-    opacity: 0;
-  }
-  5%,
-  25% {
-    opacity: 1;
-  }
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
 }
 @-ms-keyframes dissolve {
-  0%,
-  30%,
-  100% {
-    opacity: 0;
-  }
-  5%,
-  25% {
-    opacity: 1;
-  }
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
 }
-@media only screen and (min-width: 480px) {
-  .dissolve {
-    width: 333px;
-    height: 500px;
-  }
+@keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
 }

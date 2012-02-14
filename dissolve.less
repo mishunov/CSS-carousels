@@ -1,37 +1,53 @@
 /* dissolve  */
-@width:287px;
-@height: 430px;
+@width:287px; // width of the carousel
+@height: 430px; // height of the carousel
+@numberOfItems: 4; // the number of items in the carousel
+@visibleItemDuration: 4s; // time during which a carousel item is fully visible
+@transitionDuration: 1s; // duration of the transition between two carousel items
 
 .dissolve {
     width:@width;
     height: @height;
     position:relative;
     overflow: hidden;
+
+    .item {
+        position:absolute;
+        left: 0;
+        right:0;
+        opacity: 0;
+
+        -webkit-animation: dissolve (@visibleItemDuration + @transitionDuration)*@numberOfItems linear infinite;
+        -moz-animation: dissolve (@visibleItemDuration + @transitionDuration)*@numberOfItems linear infinite;
+        -ms-animation: dissolve (@visibleItemDuration + @transitionDuration)*@numberOfItems linear infinite;
+        animation: dissolve (@visibleItemDuration + @transitionDuration)*@numberOfItems linear infinite;
+
+        &:nth-child(2) {
+            -webkit-animation-delay: @visibleItemDuration + @transitionDuration;
+            -moz-animation-delay: @visibleItemDuration + @transitionDuration;
+            -ms-animation-delay: @visibleItemDuration + @transitionDuration;
+            animation-delay: @visibleItemDuration + @transitionDuration;
+        }
+        &:nth-child(3) {
+            -webkit-animation-delay: (@visibleItemDuration + @transitionDuration)*2;
+            -moz-animation-delay: (@visibleItemDuration + @transitionDuration)*2;
+            -ms-animation-delay: (@visibleItemDuration + @transitionDuration)*2;
+            animation-delay: (@visibleItemDuration + @transitionDuration)*2;
+        }
+        &:nth-child(4) {
+            -webkit-animation-delay: (@visibleItemDuration + @transitionDuration)*3;
+            -moz-animation-delay: (@visibleItemDuration + @transitionDuration)*3;
+            -ms-animation-delay: (@visibleItemDuration + @transitionDuration)*3;
+            animation-delay: (@visibleItemDuration + @transitionDuration)*3;
+        }
+    }
 }
-.dissolve img {
-    position:absolute;
-    left: 0;
-    right:0;
-    opacity: 0;
-    -webkit-animation: dissolve 20s linear infinite;
-    -moz-animation: dissolve 20s linear infinite;
-    -ms-animation: dissolve 20s linear infinite;
-}
-.dissolve img:nth-child(2) {
-    -webkit-animation-delay: 5s;
-    -moz-animation-delay: 5s;
-    -ms-animation-delay: 5s;
-}
-.dissolve img:nth-child(3) {
-    -webkit-animation-delay: 10s;
-    -moz-animation-delay: 10s;
-    -ms-animation-delay: 10s;
-}        
-.dissolve img:nth-child(4) {
-    -webkit-animation-delay: 15s;
-    -moz-animation-delay: 15s;
-    -ms-animation-delay: 15s;
-}
+
+/*
+/* The keyframes calculations are based on assumption of 4 items in the carousel.
+/* You should notice the pattern for your own calculations.
+*/
+/* If you plan to support Safari 4 for any reason, you *must* have 0% and 100% frames */
 @-webkit-keyframes dissolve {
     0%, 30%, 100% { opacity: 0; }
     5%, 25% { opacity: 1;}
@@ -39,18 +55,12 @@
 @-moz-keyframes dissolve {
     0%, 30%, 100% { opacity: 0; }
     5%, 25% { opacity: 1;}
-}    
+}
 @-ms-keyframes dissolve {
     0%, 30%, 100% { opacity: 0; }
     5%, 25% { opacity: 1;}
 }
-
-@media only screen and (min-width: 480px) {
-@width:333px;
-@height: 500px;
-
-.dissolve {
-    width:@width;
-    height: @height;
-}
+@keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
 }
