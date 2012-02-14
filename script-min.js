@@ -90,7 +90,7 @@ $(function () {
      Begin colorDissolve.js 
 ***********************************************/ 
 
-/*globals defaults:true, window:false, $:false*/
+/*globals defaults:true, window:false, $:false, alert:false*/
 
 (function ($) {
     $.slowEach = function (array, interval, callback) {
@@ -110,6 +110,8 @@ $(function () {
     };
     $.fn.colorDissolve = function (options) {
         var op = $.extend(defaults, options),
+            $that = $(this),
+            $elem,
             interval = op.visibleItemDuration + 2 * op.transitionDuration;
         return $.slowEach(this, interval, function () {
             $(this)
@@ -119,7 +121,11 @@ $(function () {
                 .delay(op.visibleItemDuration)
                 .animate({
                     opacity: 0
-                }, op.transitionDuration);
+                }, op.transitionDuration, function () {
+                    if ($(this).is(':last-child')) {
+                        $that.colorDissolve(options);
+                    }
+                });
         });
     };
     var defaults = {
@@ -130,7 +136,7 @@ $(function () {
 
 $(function () {
     $('.colorDissolve img').colorDissolve({
-        visibleItemDuration: 4000,
-        transitionDuration: 1000
+        visibleItemDuration: 4500,
+        transitionDuration: 500
     });
 });
