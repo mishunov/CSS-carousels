@@ -28,17 +28,17 @@
 </nav>
 <section class="clearfix">
     <h2>Vertical sliding carousel</h2>
-    <div class="carouselWrapper">   
+    <div class="carouselWrapper">
         <div class="carousel vertical">
             <div class="items">
-            <img src="http://farm8.staticflickr.com/7020/6767599565_e0ffee2813_d.jpg"
-                 alt="" />
-            <img src="http://farm8.staticflickr.com/7016/6767598507_21720ed21f_d.jpg"
-                 alt="Seven to ten at Leeds & Holbeck" />
-            <img src="http://farm8.staticflickr.com/7163/6767596393_8f8b9609ec_d.jpg"
-                 alt="Seven to ten at Leeds & Holbeck" />
-            <img src="http://farm8.staticflickr.com/7004/6767593255_ae68f10fac_d.jpg"
-                 alt="Bristol autumn" />
+                <img class="item" src="http://farm8.staticflickr.com/7020/6767599565_e0ffee2813_d.jpg"
+                     alt="" />
+                <img class="item" src="http://farm8.staticflickr.com/7016/6767598507_21720ed21f_d.jpg"
+                     alt="Seven to ten at Leeds & Holbeck" />
+                <img class="item" src="http://farm8.staticflickr.com/7163/6767596393_8f8b9609ec_d.jpg"
+                     alt="Banksy" />
+                <img class="item" src="http://farm8.staticflickr.com/7004/6767593255_ae68f10fac_d.jpg"
+                     alt="Bristol autumn" />
              </div>
         </div>
         <ul class="support">
@@ -48,51 +48,127 @@
             <li class="safari">4+</li>
             <li class="ie">10+</li>
         </ul>
+        
+        <p class="moaning">
+            <strong>Whaat? It doesn't work in IE6?</strong>
+            Grab
+            <a href="https://github.com/mishunov/CSS-carousels/blob/master/vertical.js" title="jQuery polyfill for vertical sliding carousel">
+                <span>jQuery plugin for this carousel</span>
+            </a>
+            to extend the browser support to Opera, IE6+ and so on.
+        </p>
     </div>
     <div class="code">
         <h3>HTML</h3>
         <pre>
 &lt;div class="carousel vertical"&gt;
     &lt;div class="items"&gt;
-        &lt;img src="one.jpg" /&gt;
-        &lt;img src="two.jpg" /&gt;
-        &lt;img src="three.jpg" /&gt;
-        &lt;img src="four.jpg" /&gt;
+        &lt;img class="item" src="one.jpg" /&gt;
+        &lt;img class="item" src="two.jpg" /&gt;
+        &lt;img class="item" src="three.jpg" /&gt;
+        &lt;img class="item" src="four.jpg" /&gt;
      &lt;/div&gt;
 &lt;/div&gt;</pre>
         <h3>CSS</h3>
-        <pre>
+        <pre id="vertical-css">
+/* vertical */
 .vertical {
-    height: 500px; // height of one carousel item
-    width: 333px; // width of one carousel item
+    width: 287px;
+    height: 430px;
     position: relative;
     overflow: hidden;
 }
 .vertical .items {
-    -webkit-animation: vscroll 16s infinite;
-    -moz-animation: vscroll 16s infinite;
-    -ms-animation: vscroll 16s infinite;
+    -webkit-animation: vscroll 20s infinite;
+    -moz-animation: vscroll 20s infinite;
+    -ms-animation: vscroll 20s infinite;
+    animation: vscroll 20s infinite;
 }
-// keyframes: 3s visibile + 1s transition for each item
-@-webkit-keyframes vscroll {
-    0%, 18.75%  { margin-top: 0 }
-    25%, 43.75% { margin-top: -500px; }
-    50%, 68.75% { margin-top: -1000px; }
-    75%, 93.75% { margin-top: -1500px; }            
-    100%  { margin-top: 0 }
-}
+/*
+/* The keyframes calculations are based on assumption of 4 items in the carousel.
+/* You should notice the pattern for your own calculations.
+*/
 @-moz-keyframes vscroll {
     0%, 18.75%  { margin-top: 0 }
-    25%, 43.75% { margin-top: -500px; }
-    50%, 68.75% { margin-top: -1000px; }
-    75%, 93.75% { margin-top: -1500px; }            
+    25%, 43.75% { margin-top: -430px; }
+    50%, 68.75% { margin-top: -860px; }
+    75%, 93.75% { margin-top: -1290px; }
+    100%  { margin-top: 0 }
+}
+@-webkit-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -430px; }
+    50%, 68.75% { margin-top: -860px; }
+    75%, 93.75% { margin-top: -1290px; }
     100%  { margin-top: 0 }
 }
 @-ms-keyframes vscroll {
     0%, 18.75%  { margin-top: 0 }
-    25%, 43.75% { margin-top: -500px; }
-    50%, 68.75% { margin-top: -1000px; }
-    75%, 93.75% { margin-top: -1500px; }            
+    25%, 43.75% { margin-top: -430px; }
+    50%, 68.75% { margin-top: -860px; }
+    75%, 93.75% { margin-top: -1290px; }
+    100%  { margin-top: 0 }
+}
+@keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -430px; }
+    50%, 68.75% { margin-top: -860px; }
+    75%, 93.75% { margin-top: -1290px; }
+    100%  { margin-top: 0 }
+}</pre>
+        <h3>LESS</h3>
+        <pre id="vertical-less">
+/* vertical */
+@width:287px; // width of the carousel
+@height: 430px; // height of the carousel
+@numberOfItems: 4; // the number of items in the carousel
+@visibleItemDuration: 4s; // time during which a carousel item is fully visible
+@transitionDuration: 1s; // duration of the transition between two carousel items
+
+@carouselPeriod: @numberOfItems * (@visibleItemDuration + @transitionDuration);
+
+.vertical {
+    width: @width;
+    height: @height;
+    position: relative;
+    overflow: hidden;
+    .items {
+        -webkit-animation: vscroll @carouselPeriod infinite;
+        -moz-animation: vscroll @carouselPeriod infinite;
+        -ms-animation: vscroll @carouselPeriod infinite;
+        animation: vscroll @carouselPeriod infinite;
+    }
+}
+/*
+/* The keyframes calculations are based on assumption of 4 items in the carousel.
+/* You should notice the pattern for your own calculations.
+*/
+@-moz-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -1px * @height; }
+    50%, 68.75% { margin-top: -2px * @height; }
+    75%, 93.75% { margin-top: -3px * @height; }
+    100%  { margin-top: 0 }
+}
+@-webkit-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -1px * @height; }
+    50%, 68.75% { margin-top: -2px * @height; }
+    75%, 93.75% { margin-top: -3px * @height; }
+    100%  { margin-top: 0 }
+}
+@-ms-keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -1px * @height; }
+    50%, 68.75% { margin-top: -2px * @height; }
+    75%, 93.75% { margin-top: -3px * @height; }
+    100%  { margin-top: 0 }
+}
+@keyframes vscroll {
+    0%, 18.75%  { margin-top: 0 }
+    25%, 43.75% { margin-top: -1px * @height; }
+    50%, 68.75% { margin-top: -2px * @height; }
+    75%, 93.75% { margin-top: -3px * @height; }
     100%  { margin-top: 0 }
 }</pre>
     </div>
@@ -114,13 +190,13 @@
     <div class="carouselWrapper">
         <div class="carousel horizontal">
             <div class="items">
-                <img src="http://farm8.staticflickr.com/7020/6767599565_e0ffee2813_d.jpg"
+                <img class="item" src="http://farm8.staticflickr.com/7020/6767599565_e0ffee2813_d.jpg"
                      alt="" />
-                <img src="http://farm8.staticflickr.com/7016/6767598507_21720ed21f_d.jpg"
+                <img class="item" src="http://farm8.staticflickr.com/7016/6767598507_21720ed21f_d.jpg"
                      alt="Seven to ten at Leeds & Holbeck" />
-                <img src="http://farm8.staticflickr.com/7163/6767596393_8f8b9609ec_d.jpg"
-                     alt="Seven to ten at Leeds & Holbeck" />
-                <img src="http://farm8.staticflickr.com/7004/6767593255_ae68f10fac_d.jpg"
+                <img class="item" src="http://farm8.staticflickr.com/7163/6767596393_8f8b9609ec_d.jpg"
+                     alt="Banksy" />
+                <img class="item" src="http://farm8.staticflickr.com/7004/6767593255_ae68f10fac_d.jpg"
                      alt="Bristol autumn" />
              </div>
         </div>
@@ -131,58 +207,140 @@
             <li class="safari">4+</li>
             <li class="ie">10+</li>
         </ul>
+        
+        <p class="moaning">
+            <strong>Whaat? It doesn't work in IE6?</strong>
+            Grab
+            <a href="https://github.com/mishunov/CSS-carousels/blob/master/horizontal.js" title="jQuery polyfill for horizontal sliding carousel">
+                <span>jQuery plugin for this carousel</span>
+            </a>
+            to extend the browser support to Opera, IE6+ and so on.
+        </p>
     </div>
     <div class="code">
         <h3>HTML</h3>
         <pre>
 &lt;div class="carousel horizontal"&gt;
     &lt;div class="items"&gt;
-        &lt;img src="one.jpg" /&gt;
-        &lt;img src="two.jpg" /&gt;
-        &lt;img src="three.jpg" /&gt;
-        &lt;img src="four.jpg" /&gt;
+        &lt;img class="item" src="one.jpg" /&gt;
+        &lt;img class="item" src="two.jpg" /&gt;
+        &lt;img class="item" src="three.jpg" /&gt;
+        &lt;img class="item" src="four.jpg" /&gt;
      &lt;/div&gt;
 &lt;/div&gt;</pre>
         <h3>CSS</h3>
-        <pre>
+        <pre id="horizontal-css">
+/* horizontal */
 .horizontal {
-    width: 333px; // width of one item
+    width: 287px;
     position: relative;
     overflow: hidden;
 }
-.horizontal img {
-    margin: 0;
-    float:left;
-}
 .horizontal .items {
-    width:1332px; // width of 4 carousel items
-    -webkit-animation: hscroll 16s infinite;
-    -moz-animation: hscroll 16s infinite;
-    -ms-animation: hscroll 16s infinite;
+    width: 1148px;
+    -webkit-animation: hscroll 20s infinite;
+    -moz-animation: hscroll 20s infinite;
+    -ms-animation: hscroll 20s infinite;
+    animation: hscroll 20s infinite;
 }
-// keyframes: 3s visibile + 1s transition for each item
+.horizontal .item {
+    margin: 0;
+    float: left;
+    width: 287px;
+}
+/*
+/* The keyframes calculations are based on assumption of 4 items in the carousel.
+/* You should notice the pattern for your own calculations.
+*/
 @-webkit-keyframes hscroll {
     0%, 18.75%  { margin-left: 0 }
-    25%, 43.75% { margin-left: -333px; }
-    50%, 68.75% { margin-left: -666px; }
-    75%, 93.75% { margin-left: -999px; }            
+    25%, 43.75% { margin-left: -287px; }
+    50%, 68.75% { margin-left: -574px; }
+    75%, 93.75% { margin-left: -861px; }
     100%  { margin-left: 0 }
 }
 @-moz-keyframes hscroll {
     0%, 18.75%  { margin-left: 0 }
-    25%, 43.75% { margin-left: -333px; }
-    50%, 68.75% { margin-left: -666px; }
-    75%, 93.75% { margin-left: -999px; }            
+    25%, 43.75% { margin-left: -287px; }
+    50%, 68.75% { margin-left: -574px; }
+    75%, 93.75% { margin-left: -861px; }
     100%  { margin-left: 0 }
 }
 @-ms-keyframes hscroll {
     0%, 18.75%  { margin-left: 0 }
-    25%, 43.75% { margin-left: -333px; }
-    50%, 68.75% { margin-left: -666px; }
-    75%, 93.75% { margin-left: -999px; }            
+    25%, 43.75% { margin-left: -287px; }
+    50%, 68.75% { margin-left: -574px; }
+    75%, 93.75% { margin-left: -861px; }
+    100%  { margin-left: 0 }
+}
+@keyframes hscroll {
+    0%, 18.75%  { margin-left: 0 }
+    25%, 43.75% { margin-left: -287px; }
+    50%, 68.75% { margin-left: -574px; }
+    75%, 93.75% { margin-left: -861px; }
     100%  { margin-left: 0 }
 }</pre>
-    </div>    
+        <h3>LESS</h3>
+        <pre id="horizontal-less">
+/* horizontal */
+@width:287px; // width of the carousel
+@numberOfItems: 4; // the number of items in the carousel
+@visibleItemDuration: 4s; // time during which a carousel item is fully visible
+@transitionDuration: 1s; // duration of the transition between two carousel items
+
+@carouselPeriod: @numberOfItems * (@visibleItemDuration + @transitionDuration);
+
+.horizontal {
+    width: @width;
+    position: relative;
+    overflow: hidden;
+    .items {
+        width: @width * @numberOfItems;
+
+        -webkit-animation: hscroll @carouselPeriod infinite;
+        -moz-animation: hscroll @carouselPeriod infinite;
+        -ms-animation: hscroll @carouselPeriod infinite;
+        animation: hscroll @carouselPeriod infinite;
+    }
+    .item {
+        margin: 0;
+        float:left;
+        width: @width;
+    }
+}
+/*
+/* The keyframes calculations are based on assumption of 4 items in the carousel.
+/* You should notice the pattern for your own calculations.
+*/
+@-webkit-keyframes hscroll {
+    0%, 18.75%  { margin-left: 0 }
+    25%, 43.75% { margin-left: -1px * @width; }
+    50%, 68.75% { margin-left: -2px * @width; }
+    75%, 93.75% { margin-left: -3px * @width; }
+    100%  { margin-left: 0 }
+}
+@-moz-keyframes hscroll {
+    0%, 18.75%  { margin-left: 0 }
+    25%, 43.75% { margin-left: -1px * @width; }
+    50%, 68.75% { margin-left: -2px * @width; }
+    75%, 93.75% { margin-left: -3px * @width; }
+    100%  { margin-left: 0 }
+}
+@-ms-keyframes hscroll {
+    0%, 18.75%  { margin-left: 0 }
+    25%, 43.75% { margin-left: -1px * @width; }
+    50%, 68.75% { margin-left: -2px * @width; }
+    75%, 93.75% { margin-left: -3px * @width; }
+    100%  { margin-left: 0 }
+}
+@keyframes hscroll {
+    0%, 18.75%  { margin-left: 0 }
+    25%, 43.75% { margin-left: -1px * @width; }
+    50%, 68.75% { margin-left: -2px * @width; }
+    75%, 93.75% { margin-left: -3px * @width; }
+    100%  { margin-left: 0 }
+}</pre>
+    </div>
 </section>
 </div>
 
@@ -200,14 +358,14 @@
     <h2>Carousel with images dissolving through color</h2>
     <div class="carouselWrapper">
         <div class="carousel colorDissolve">
-            <img src="http://farm8.staticflickr.com/7020/6767599565_e0ffee2813_d.jpg"
+            <img class="item" src="http://farm8.staticflickr.com/7020/6767599565_e0ffee2813_d.jpg"
                  alt="" />
-            <img src="http://farm8.staticflickr.com/7016/6767598507_21720ed21f_d.jpg"
+            <img class="item" src="http://farm8.staticflickr.com/7016/6767598507_21720ed21f_d.jpg"
                  alt="Seven to ten at Leeds & Holbeck" />
-            <img src="http://farm8.staticflickr.com/7163/6767596393_8f8b9609ec_d.jpg"
-                 alt="Seven to ten at Leeds & Holbeck" />
-            <img src="http://farm8.staticflickr.com/7004/6767593255_ae68f10fac_d.jpg"
-                 alt="Not so fishy fountain" />
+            <img class="item" src="http://farm8.staticflickr.com/7163/6767596393_8f8b9609ec_d.jpg"
+                 alt="Banksy" />
+            <img class="item" src="http://farm8.staticflickr.com/7004/6767593255_ae68f10fac_d.jpg"
+                 alt="Bristol autumn" />
         </div>
         <ul class="support">
             <li class="chrome">14+</li>
@@ -216,63 +374,154 @@
             <li class="safari">4+</li>
             <li class="ie">10+</li>
         </ul>
+        
+        <p class="moaning">
+            <strong>Whaat? It doesn't work in IE6?</strong>
+            Grab
+            <a href="https://github.com/mishunov/CSS-carousels/blob/master/colorDissolve.js" title="jQuery polyfill for carousel with items dissolving through color">
+                <span>jQuery plugin for this carousel</span>
+            </a>
+            to extend the browser support to Opera, IE6+ and so on.
+        </p>
     </div>
     <div class="code">
         <h3>HTML</h3>
         <pre>
 &lt;div class="carousel colorDissolve"&gt;
-    &lt;img src="one.jpg" /&gt;
-    &lt;img src="two.jpg" /&gt;
-    &lt;img src="three.jpg"/&gt;
-    &lt;img src="four.jpg" /&gt;
+    &lt;img class="item" src="one.jpg" /&gt;
+    &lt;img class="item" src="two.jpg" /&gt;
+    &lt;img class="item" src="three.jpg"/&gt;
+    &lt;img class="item" src="four.jpg" /&gt;
 &lt;/div&gt;</pre>
         <h3>CSS</h3>
-        <pre>
+        <pre id="color-dissolve-css">
+/* colorDissolve  */
+.colorDissolve {
+  position: relative;
+  overflow: hidden;
+  width: 287px;
+  height: 430px;
+  background: #000000;
+}
+.colorDissolve .item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-animation: colorDissolve 24s linear infinite;
+  -moz-animation: colorDissolve 24s linear infinite;
+  -ms-animation: colorDissolve 24s linear infinite;
+  animation: colorDissolve 24s linear infinite;
+}
+.colorDissolve .item:nth-child(2) {
+  -webkit-animation-delay: 6s;
+  -moz-animation-delay: 6s;
+  -ms-animation-delay: 6s;
+  animation-delay: 6s;
+}
+.colorDissolve .item:nth-child(3) {
+  -webkit-animation-delay: 12s;
+  -moz-animation-delay: 12s;
+  -ms-animation-delay: 12s;
+  animation-delay: 12s;
+}
+.colorDissolve .item:nth-child(4) {
+  -webkit-animation-delay: 18s;
+  -moz-animation-delay: 18s;
+  -ms-animation-delay: 18s;
+  animation-delay: 18s;
+}
+/*
+/* The keyframes calculations are based on assumption of 4 items in the carousel.
+/* You should notice the pattern for your own calculations.
+*/
+/* If you plan to support Safari 4 for any reason, you *must* have 0% and 100% frames */
+@-webkit-keyframes colorDissolve {
+    0%, 25%, 100% { opacity: 0; }
+    2.5%, 22.5% { opacity: 1;}
+}
+@-moz-keyframes colorDissolve {
+    0%, 25%, 100% { opacity: 0; }
+    2.5%, 22.5% { opacity: 1;}
+}
+@-ms-keyframes colorDissolve {
+    0%, 25%, 100% { opacity: 0; }
+    2.5%, 22.5% { opacity: 1;}
+}
+@keyframes colorDissolve {
+    0%, 25%, 100% { opacity: 0; }
+    2.5%, 22.5% { opacity: 1;}
+}</pre>
+        <h3>LESS</h3>
+        <pre id="color-dissolve-less">
+/* colorDissolve  */
+@width:287px; // width of the carousel
+@height: 430px; // height of the carousel
+@numberOfItems: 4; // the number of items in the carousel
+@visibleItemDuration: 4s; // time during which a carousel item is fully visible
+@transitionDuration: 1s; // duration of the transition between two carousel items
+@dissolveColor: #000; // a color to dissolve through
+
 .colorDissolve {
     position:relative;
     overflow: hidden;
-    width:333px; // width of one carousel item
-    height: 500px; // height of one carousel item
-    background: #000; // color to dissolve through
+    width:@width;
+    height: @height;
+    background: @dissolveColor;
+
+    .item {
+        position:absolute;
+        left: 0;
+        right:0;
+        opacity: 0;
+
+        -webkit-animation: colorDissolve (@visibleItemDuration + 2 * @transitionDuration)*@numberOfItems linear infinite;
+        -moz-animation: colorDissolve (@visibleItemDuration + 2 * @transitionDuration)*@numberOfItems linear infinite;
+        -ms-animation: colorDissolve (@visibleItemDuration + 2 * @transitionDuration)*@numberOfItems linear infinite;
+        animation: colorDissolve (@visibleItemDuration + 2 * @transitionDuration)*@numberOfItems linear infinite;
+
+        &:nth-child(2) {
+            -webkit-animation-delay: @visibleItemDuration + 2 * @transitionDuration;
+            -moz-animation-delay: @visibleItemDuration + 2 * @transitionDuration;
+            -ms-animation-delay: @visibleItemDuration + 2 * @transitionDuration;
+            animation-delay: @visibleItemDuration + 2 * @transitionDuration;
+        }
+        &:nth-child(3) {
+            -webkit-animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*2;
+            -moz-animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*2;
+            -ms-animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*2;
+            animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*2;
+        }
+        &:nth-child(4) {
+            -webkit-animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*3;
+            -moz-animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*3;
+            -ms-animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*3;
+            animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*3;
+        }
+    }
 }
-.colorDissolve img {
-    position:absolute;
-    left: 0;
-    right:0;
-    opacity: 0;
-    -webkit-animation: dissolve 20s linear infinite;
-    -moz-animation: dissolve 20s linear infinite;
-    -ms-animation: dissolve 20s linear infinite;
+
+/*
+/* The keyframes calculations are based on assumption of 4 items in the carousel.
+/* You should notice the pattern for your own calculations.
+*/
+/* If you plan to support Safari 4 for any reason, you *must* have 0% and 100% frames */
+@-webkit-keyframes colorDissolve {
+    0%, 25%, 100% { opacity: 0; }
+    2.5%, 22.5% { opacity: 1;}
 }
-.colorDissolve img:nth-child(2) {
-    -webkit-animation-delay: 5s;
-    -moz-animation-delay: 5s;
-    -ms-animation-delay: 5s;
+@-moz-keyframes colorDissolve {
+    0%, 25%, 100% { opacity: 0; }
+    2.5%, 22.5% { opacity: 1;}
 }
-.colorDissolve img:nth-child(3) {
-    -webkit-animation-delay: 10s;
-    -moz-animation-delay: 10s;
-    -ms-animation-delay: 10s;
-}        
-.colorDissolve img:nth-child(4) {
-    -webkit-animation-delay: 15s;
-    -moz-animation-delay: 15s;
-    -ms-animation-delay: 15s;
+@-ms-keyframes colorDissolve {
+    0%, 25%, 100% { opacity: 0; }
+    2.5%, 22.5% { opacity: 1;}
 }
-// keyframes: 4.5s visibile + 0.5s transition for each item
-@-webkit-keyframes dissolve {
-    2.5%, 22.5% { opacity: 1;}    
-    25%, 100% { opacity: 0; }
-}
-@-moz-keyframes dissolve {
-    2.5%, 22.5% { opacity: 1;}    
-    25%, 100% { opacity: 0; }
-}    
-@-ms-keyframes dissolve {
-    2.5%, 22.5% { opacity: 1;}    
-    25%, 100% { opacity: 0; }
-}
-</pre>
+@keyframes colorDissolve {
+    0%, 25%, 100% { opacity: 0; }
+    2.5%, 22.5% { opacity: 1;}
+}</pre>
     </div>
 </section>
 </div>
@@ -292,14 +541,14 @@
     <p>To help you build this carousel animation (that is a little bit tricky), I have made <a href="http://tinyurl.com/7uqoa47" title="Instacalc calculator for the carousel's CSS animation">a calculator</a> with explanations and notes on how to use it. Use styles for this demo as an example and replace some values with the ones from the calculator to tune the carousel for your needs.</p>
     <div class="carouselWrapper">
         <div class="carousel dissolve">
-            <img src="http://farm8.staticflickr.com/7020/6767599565_e0ffee2813_d.jpg"
+            <img class="item" src="http://farm8.staticflickr.com/7020/6767599565_e0ffee2813_d.jpg"
                  alt="" />
-            <img src="http://farm8.staticflickr.com/7016/6767598507_21720ed21f_d.jpg"
+            <img class="item" src="http://farm8.staticflickr.com/7016/6767598507_21720ed21f_d.jpg"
                  alt="Seven to ten at Leeds & Holbeck" />
-            <img src="http://farm8.staticflickr.com/7163/6767596393_8f8b9609ec_d.jpg"
-                 alt="Seven to ten at Leeds & Holbeck" />
-            <img src="http://farm8.staticflickr.com/7004/6767593255_ae68f10fac_d.jpg"
-                 alt="Not so fishy fountain" />
+            <img class="item" src="http://farm8.staticflickr.com/7163/6767596393_8f8b9609ec_d.jpg"
+                 alt="Banksy" />
+            <img class="item" src="http://farm8.staticflickr.com/7004/6767593255_ae68f10fac_d.jpg"
+                 alt="Bristol autumn" />
         </div>
         <ul class="support">
             <li class="chrome">14+</li>
@@ -308,48 +557,67 @@
             <li class="safari">4+</li>
             <li class="ie">10+</li>
         </ul>
+        
+        <p class="moaning">
+            <strong>Whaat? It doesn't work in IE6?</strong>
+            Grab
+            <a href="https://github.com/mishunov/CSS-carousels/blob/master/dissolve.js" title="jQuery polyfill for carousel with dissolving items">
+                <span>jQuery plugin for this carousel</span>
+            </a>
+            to extend the browser support to Opera, IE6+ and so on.
+        </p>
     </div>
     <div class="code">
         <h3>HTML</h3>
         <pre>
 &lt;div class="carousel dissolve"&gt;
-    &lt;img src="one.jpg" /&gt;
-    &lt;img src="two.jpg" /&gt;
-    &lt;img src="three.jpg"/&gt;
-    &lt;img src="four.jpg" /&gt;
+    &lt;img class="item" src="one.jpg" /&gt;
+    &lt;img class="item" src="two.jpg" /&gt;
+    &lt;img class="item" src="three.jpg"/&gt;
+    &lt;img class="item" src="four.jpg" /&gt;
 &lt;/div&gt;</pre>
         <h3>CSS</h3>
-        <pre>
+        <pre id="dissolve-css">
+/* dissolve  */
 .dissolve {
-    width:333px;
-    height: 500px;
-    position:relative;
-    overflow: hidden;
+  width: 287px;
+  height: 430px;
+  position: relative;
+  overflow: hidden;
 }
-.dissolve img {
-    position:absolute;
-    left: 0;
-    right:0;
-    opacity: 0;
-    -webkit-animation: dissolve 20s linear infinite;
-    -moz-animation: dissolve 20s linear infinite;
-    -ms-animation: dissolve 20s linear infinite;
+.dissolve .item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-animation: dissolve 20s linear infinite;
+  -moz-animation: dissolve 20s linear infinite;
+  -ms-animation: dissolve 20s linear infinite;
+  animation: dissolve 20s linear infinite;
 }
-.dissolve img:nth-child(2) {
-    -webkit-animation-delay: 5s;
-    -moz-animation-delay: 5s;
-    -ms-animation-delay: 5s;
+.dissolve .item:nth-child(2) {
+  -webkit-animation-delay: 5s;
+  -moz-animation-delay: 5s;
+  -ms-animation-delay: 5s;
+  animation-delay: 5s;
 }
-.dissolve img:nth-child(3) {
-    -webkit-animation-delay: 10s;
-    -moz-animation-delay: 10s;
-    -ms-animation-delay: 10s;
-}        
-.dissolve img:nth-child(4) {
-    -webkit-animation-delay: 15s;
-    -moz-animation-delay: 15s;
-    -ms-animation-delay: 15s;
+.dissolve .item:nth-child(3) {
+  -webkit-animation-delay: 10s;
+  -moz-animation-delay: 10s;
+  -ms-animation-delay: 10s;
+  animation-delay: 10s;
 }
+.dissolve .item:nth-child(4) {
+  -webkit-animation-delay: 15s;
+  -moz-animation-delay: 15s;
+  -ms-animation-delay: 15s;
+  animation-delay: 15s;
+}
+/*
+/* The keyframes calculations are based on assumption of 4 items in the carousel.
+/* You should notice the pattern for your own calculations.
+*/
+/* If you plan to support Safari 4 for any reason, you *must* have 0% and 100% frames */
 @-webkit-keyframes dissolve {
     0%, 30%, 100% { opacity: 0; }
     5%, 25% { opacity: 1;}
@@ -357,13 +625,84 @@
 @-moz-keyframes dissolve {
     0%, 30%, 100% { opacity: 0; }
     5%, 25% { opacity: 1;}
-}    
+}
 @-ms-keyframes dissolve {
     0%, 30%, 100% { opacity: 0; }
     5%, 25% { opacity: 1;}
 }
-</pre>
-    </div>    
+@keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
+}</pre>
+        <h3>LESS</h3>
+        <pre id="dissolve-less">
+/* dissolve  */
+@width:287px; // width of the carousel
+@height: 430px; // height of the carousel
+@numberOfItems: 4; // the number of items in the carousel
+@visibleItemDuration: 4s; // time during which a carousel item is fully visible
+@transitionDuration: 1s; // duration of the transition between two carousel items
+
+.dissolve {
+    width:@width;
+    height: @height;
+    position:relative;
+    overflow: hidden;
+
+    .item {
+        position:absolute;
+        left: 0;
+        right:0;
+        opacity: 0;
+
+        -webkit-animation: dissolve (@visibleItemDuration + @transitionDuration)*@numberOfItems linear infinite;
+        -moz-animation: dissolve (@visibleItemDuration + @transitionDuration)*@numberOfItems linear infinite;
+        -ms-animation: dissolve (@visibleItemDuration + @transitionDuration)*@numberOfItems linear infinite;
+        animation: dissolve (@visibleItemDuration + @transitionDuration)*@numberOfItems linear infinite;
+
+        &:nth-child(2) {
+            -webkit-animation-delay: @visibleItemDuration + @transitionDuration;
+            -moz-animation-delay: @visibleItemDuration + @transitionDuration;
+            -ms-animation-delay: @visibleItemDuration + @transitionDuration;
+            animation-delay: @visibleItemDuration + @transitionDuration;
+        }
+        &:nth-child(3) {
+            -webkit-animation-delay: (@visibleItemDuration + @transitionDuration)*2;
+            -moz-animation-delay: (@visibleItemDuration + @transitionDuration)*2;
+            -ms-animation-delay: (@visibleItemDuration + @transitionDuration)*2;
+            animation-delay: (@visibleItemDuration + @transitionDuration)*2;
+        }
+        &:nth-child(4) {
+            -webkit-animation-delay: (@visibleItemDuration + @transitionDuration)*3;
+            -moz-animation-delay: (@visibleItemDuration + @transitionDuration)*3;
+            -ms-animation-delay: (@visibleItemDuration + @transitionDuration)*3;
+            animation-delay: (@visibleItemDuration + @transitionDuration)*3;
+        }
+    }
+}
+
+/*
+/* The keyframes calculations are based on assumption of 4 items in the carousel.
+/* You should notice the pattern for your own calculations.
+*/
+/* If you plan to support Safari 4 for any reason, you *must* have 0% and 100% frames */
+@-webkit-keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
+}
+@-moz-keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
+}
+@-ms-keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
+}
+@keyframes dissolve {
+    0%, 30%, 100% { opacity: 0; }
+    5%, 25% { opacity: 1;}
+}</pre>
+    </div>
 </section>
 </div>
 
@@ -380,8 +719,8 @@
     <address>
         <a href="http://mishunov.me" title="Visit Denys Mishunov's blog">
             <img src="http://24.media.tumblr.com/avatar_647041a4337f_64.png" alt="Denys Mishunov" />
-        </a>            
-        <small>Brought to you by <a href="http://mishunov.me" title="Visit Denys Mishunov's blog">Denys Mishunov</a></small>    
+        </a>
+        <small>Brought to you by <a href="http://mishunov.me" title="Visit Denys Mishunov's blog">Denys Mishunov</a></small>
         <ul class="social">
             <li><a href="http://twitter.com/mishunov" class="socialIcon twitterIcon" title="Contact me on Twitter">Contact me on Twitter</a></li>
             <li><a href="http://plus.google.com/102311957553961771735" class="socialIcon googleIcon" title="Contact me on Google +">Contact me on Google +</a></li>
