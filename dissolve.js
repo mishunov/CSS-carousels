@@ -75,7 +75,7 @@ if( animation === false ) {
 
 $(function () {
     if( animation === false ) {
-        $('.dissolve img').dissolve({
+        $('.dissolve .item').dissolve({
             // TUNE YOUR CAROUSEL HERE
 
             // duration of an item being visible in miliseconds
