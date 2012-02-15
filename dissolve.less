@@ -5,6 +5,9 @@
 @visibleItemDuration: 4s; // time during which a carousel item is fully visible
 @transitionDuration: 1s; // duration of the transition between two carousel items
 
+@oneItemDuration: @visibleItemDuration + @transitionDuration;
+@carouselPeriod: @oneItemDuration * @numberOfItems;
+
 .dissolve {
     width:@width;
     height: @height;
@@ -17,28 +20,28 @@
         right:0;
         opacity: 0;
 
-        -webkit-animation: dissolve (@visibleItemDuration + @transitionDuration)*@numberOfItems linear infinite;
-        -moz-animation: dissolve (@visibleItemDuration + @transitionDuration)*@numberOfItems linear infinite;
-        -ms-animation: dissolve (@visibleItemDuration + @transitionDuration)*@numberOfItems linear infinite;
-        animation: dissolve (@visibleItemDuration + @transitionDuration)*@numberOfItems linear infinite;
+        -webkit-animation: dissolve @carouselPeriod linear infinite;
+        -moz-animation: dissolve @carouselPeriod linear infinite;
+        -ms-animation: dissolve @carouselPeriod linear infinite;
+        animation: dissolve @carouselPeriod linear infinite;
 
         &:nth-child(2) {
-            -webkit-animation-delay: @visibleItemDuration + @transitionDuration;
-            -moz-animation-delay: @visibleItemDuration + @transitionDuration;
-            -ms-animation-delay: @visibleItemDuration + @transitionDuration;
-            animation-delay: @visibleItemDuration + @transitionDuration;
+            -webkit-animation-delay: @oneItemDuration;
+            -moz-animation-delay: @oneItemDuration;
+            -ms-animation-delay: @oneItemDuration;
+            animation-delay: @oneItemDuration;
         }
         &:nth-child(3) {
-            -webkit-animation-delay: (@visibleItemDuration + @transitionDuration)*2;
-            -moz-animation-delay: (@visibleItemDuration + @transitionDuration)*2;
-            -ms-animation-delay: (@visibleItemDuration + @transitionDuration)*2;
-            animation-delay: (@visibleItemDuration + @transitionDuration)*2;
+            -webkit-animation-delay: 2 * @oneItemDuration;
+            -moz-animation-delay: 2 * @oneItemDuration;
+            -ms-animation-delay: 2 * @oneItemDuration;
+            animation-delay: 2 * @oneItemDuration;
         }
         &:nth-child(4) {
-            -webkit-animation-delay: (@visibleItemDuration + @transitionDuration)*3;
-            -moz-animation-delay: (@visibleItemDuration + @transitionDuration)*3;
-            -ms-animation-delay: (@visibleItemDuration + @transitionDuration)*3;
-            animation-delay: (@visibleItemDuration + @transitionDuration)*3;
+            -webkit-animation-delay: 3 * @oneItemDuration;
+            -moz-animation-delay: 3 * @oneItemDuration;
+            -ms-animation-delay: 3 * @oneItemDuration;
+            animation-delay: 3 * @oneItemDuration;
         }
     }
 }
