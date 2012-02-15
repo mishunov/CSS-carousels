@@ -6,41 +6,44 @@
 @transitionDuration: 1s; // duration of the transition between two carousel items
 @dissolveColor: #000; // a color to dissolve through
 
+@oneItemDuration: @visibleItemDuration + 2 * @transitionDuration;
+@carouselPeriod: @oneItemDuration * @numberOfItems;
+
 .colorDissolve {
     position:relative;
     overflow: hidden;
     width:@width;
     height: @height;
     background: @dissolveColor;
-    
+
     .item {
         position:absolute;
         left: 0;
         right:0;
         opacity: 0;
-        
-        -webkit-animation: colorDissolve (@visibleItemDuration + 2 * @transitionDuration)*@numberOfItems linear infinite;
-        -moz-animation: colorDissolve (@visibleItemDuration + 2 * @transitionDuration)*@numberOfItems linear infinite;
-        -ms-animation: colorDissolve (@visibleItemDuration + 2 * @transitionDuration)*@numberOfItems linear infinite;
-        animation: colorDissolve (@visibleItemDuration + 2 * @transitionDuration)*@numberOfItems linear infinite;
-        
+
+        -webkit-animation: colorDissolve @carouselPeriod linear infinite;
+        -moz-animation: colorDissolve @carouselPeriod linear infinite;
+        -ms-animation: colorDissolve @carouselPeriod linear infinite;
+        animation: colorDissolve @carouselPeriod linear infinite;
+
         &:nth-child(2) {
-            -webkit-animation-delay: @visibleItemDuration + 2 * @transitionDuration;
-            -moz-animation-delay: @visibleItemDuration + 2 * @transitionDuration;
-            -ms-animation-delay: @visibleItemDuration + 2 * @transitionDuration;
-            animation-delay: @visibleItemDuration + 2 * @transitionDuration;
+            -webkit-animation-delay: @oneItemDuration;
+            -moz-animation-delay: @oneItemDuration;
+            -ms-animation-delay: @oneItemDuration;
+            animation-delay: @oneItemDuration;
         }
         &:nth-child(3) {
-            -webkit-animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*2;
-            -moz-animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*2;
-            -ms-animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*2;
-            animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*2;
-        }        
+            -webkit-animation-delay: 2 * @oneItemDuration;
+            -moz-animation-delay: 2 * @oneItemDuration;
+            -ms-animation-delay: 2 * @oneItemDuration;
+            animation-delay: 2 * @oneItemDuration;
+        }
         &:nth-child(4) {
-            -webkit-animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*3;
-            -moz-animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*3;
-            -ms-animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*3;
-            animation-delay: (@visibleItemDuration + 2 * @transitionDuration)*3;
+            -webkit-animation-delay: 3 * @oneItemDuration;
+            -moz-animation-delay: 3 * @oneItemDuration;
+            -ms-animation-delay: 3 * @oneItemDuration;
+            animation-delay: 3 * @oneItemDuration;
         }
     }
 }
@@ -52,17 +55,17 @@
 /* If you plan to support Safari 4 for any reason, you *must* have 0% and 100% frames */
 @-webkit-keyframes colorDissolve {
     0%, 25%, 100% { opacity: 0; }
-    2.5%, 22.5% { opacity: 1;}    
+    4.17%, 20.84% { opacity: 1;}
 }
 @-moz-keyframes colorDissolve {
     0%, 25%, 100% { opacity: 0; }
-    2.5%, 22.5% { opacity: 1;}    
-}    
+    4.17%, 20.84% { opacity: 1;}
+}
 @-ms-keyframes colorDissolve {
     0%, 25%, 100% { opacity: 0; }
-    2.5%, 22.5% { opacity: 1;}    
+    4.17%, 20.84% { opacity: 1;}
 }
 @keyframes colorDissolve {
     0%, 25%, 100% { opacity: 0; }
-    2.5%, 22.5% { opacity: 1;}    
+    4.17%, 20.84% { opacity: 1;}
 }
